@@ -151,12 +151,19 @@
     <div class="step">
       <div class="check"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
       <h2>Contrato assinado! ✓</h2>
-      <p>Seu contrato foi registrado com sucesso. Agora falta só o último passo: concluir o pagamento para liberarmos seu acesso.</p>
-      <a class="btn-baixar" id="btn-pagar" href="#" style="background:linear-gradient(135deg,#16A34A,#22C55E);color:#fff;margin-bottom:14px;font-size:16px">Ir para o pagamento →</a>
-      <div style="margin:6px 0 18px">
-        <a class="btn-baixar" id="btn-baixar" href="#" style="background:#F1F5F9;color:#475569;font-size:14px;padding:12px 24px">⬇ Baixar minha via do contrato (PDF)</a>
+      <p>Seu contrato foi registrado com sucesso. Siga os <b>2 passos abaixo</b> para concluir e liberar seu acesso.</p>
+
+      <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;padding:16px;margin:6px 0 18px;text-align:left">
+        <div style="font-weight:800;color:#92400E;margin-bottom:6px">⚠ Passo obrigatório</div>
+        <div style="font-size:13.5px;color:#78350F;line-height:1.6">Toque em <b>"Enviar contrato pelo WhatsApp"</b> abaixo e envie a mensagem. <b>Sem esse envio, seu login e senha não serão criados.</b> É assim que confirmamos sua assinatura.</div>
       </div>
-      <p style="font-size:12.5px;color:var(--muted)">Guarde seu contrato em PDF. Após o pagamento, seu acesso é enviado em até 1 dia útil.</p>
+
+      <a class="btn-baixar" id="btn-whats" href="#" target="_blank" style="background:#25D366;color:#fff;margin-bottom:12px;font-size:16px;width:100%">📲 Enviar contrato pelo WhatsApp</a>
+      <a class="btn-baixar" id="btn-pagar" href="#" target="_blank" style="background:linear-gradient(135deg,#16A34A,#22C55E);color:#fff;margin-bottom:12px;font-size:15px;width:100%">Ir para o pagamento →</a>
+      <div style="margin:6px 0 14px">
+        <a class="btn-baixar" id="btn-baixar" href="#" style="background:#F1F5F9;color:#475569;font-size:14px;padding:12px 24px">⬇ Baixar meu contrato assinado (PDF)</a>
+      </div>
+      <p style="font-size:12.5px;color:var(--muted)">Guarde sua via em PDF. Após o pagamento e o envio pelo WhatsApp, seu acesso é criado e enviado em até 1 dia útil.</p>
     </div>
   </div>
 
@@ -192,25 +199,51 @@ const LINK_PAGAMENTO = 'https://mpago.la/2mXUqP5';
 /* ============ TEXTO DO CONTRATO (resumido para leitura na tela) ============ */
 const CLAUSULAS = `
 <h3>CLÁUSULA 1ª — DO OBJETO</h3>
-<p>Licença de uso temporária, onerosa, pessoal, intransferível e não exclusiva do sistema "ATLAS RH", na modalidade Software como Serviço (SaaS), para gestão de recursos humanos e departamento pessoal.</p>
-<h3>CLÁUSULA 2ª — DA VIGÊNCIA</h3>
-<p>Contrato por prazo indeterminado, com assinatura mensal renovada automaticamente, salvo manifestação de rescisão.</p>
-<h3>CLÁUSULA 3ª — DO PREÇO E PAGAMENTO</h3>
-<p>Pagamento mensal do plano contratado. O atraso gera multa de 2%, juros de 1% ao mês e correção. Atraso igual ou superior a 5 dias autoriza a suspensão do acesso até a regularização.</p>
-<h3>CLÁUSULA 4ª — DO REAJUSTE</h3>
-<p>Reajuste anual pelo IPCA. A LICENCIANTE pode alterar o valor do plano mediante aviso prévio de 30 dias. Não concordando, o cliente pode rescindir sem taxa dentro desse prazo; o uso após a vigência implica aceitação.</p>
-<h3>CLÁUSULA 5ª e 6ª — OBRIGAÇÕES</h3>
-<p>A LICENCIANTE disponibiliza o acesso em até 7 dias úteis, presta suporte e zela pela segurança. A CONTRATANTE paga pontualmente, guarda suas credenciais, não copia nem revende o sistema, e responde pelos dados que insere.</p>
-<h3>CLÁUSULA 7ª — RESCISÃO E TAXA DE CANCELAMENTO</h3>
-<div class="destaque"><p>Rescisão mediante aviso de 30 dias. Em caso de cancelamento por iniciativa da CONTRATANTE, será devida a <b>taxa de cancelamento de R$ 149,00 (cento e quarenta e nove reais)</b>, além de mensalidades vencidas. A taxa não se aplica em caso de recusa a reajuste (Cláusula 4).</p></div>
-<h3>CLÁUSULA 8ª — PROTEÇÃO DE DADOS (LGPD)</h3>
-<p>As partes cumprem a Lei 13.709/2018. A CONTRATANTE é controladora dos dados que insere; a LICENCIANTE é operadora, tratando os dados conforme instruções.</p>
-<h3>CLÁUSULA 9ª — PROPRIEDADE INTELECTUAL</h3>
-<p>O software e todo seu conteúdo são de titularidade exclusiva da LICENCIANTE. É vedado copiar, revender ou fazer engenharia reversa.</p>
-<h3>CLÁUSULA 10ª — LIMITAÇÃO DE RESPONSABILIDADE</h3>
-<p>Software fornecido "no estado em que se encontra". A LICENCIANTE não responde por decisões da CONTRATANTE, dados inseridos incorretamente, ou indisponibilidades de terceiros.</p>
-<h3>CLÁUSULA 11ª e 12ª — DISPOSIÇÕES GERAIS E FORO</h3>
-<p>Este contrato representa o acordo integral entre as partes. Fica eleito o foro da comarca da sede da LICENCIANTE.</p>
+<p>1.1. O presente Contrato tem por objeto a concessão de licença de uso, temporária, onerosa, pessoal, intransferível e não exclusiva, do sistema informatizado de gestão de recursos humanos e departamento pessoal denominado "ATLAS RH" ("Software"), disponibilizado na modalidade Software como Serviço (SaaS), acessível remotamente pela internet.</p>
+<p>1.2. A licença não implica transferência de propriedade do Software, de seu código-fonte ou de quaisquer direitos de propriedade intelectual, que permanecem sob titularidade exclusiva da LICENCIANTE.</p>
+
+<h3>CLÁUSULA 2ª — DA VIGÊNCIA E DA RENOVAÇÃO</h3>
+<p>2.1. Este Contrato vigora por prazo indeterminado, com início na data da assinatura, produzindo efeitos a partir da liberação do acesso.</p>
+<p>2.2. A assinatura é contratada em ciclos mensais, renovando-se automática e sucessivamente por iguais períodos, salvo manifestação expressa de rescisão na forma da Cláusula 7ª.</p>
+
+<h3>CLÁUSULA 3ª — DO PREÇO E DAS CONDIÇÕES DE PAGAMENTO</h3>
+<p>3.1. Pela licença de uso e pelos serviços, a CONTRATANTE pagará mensalmente o valor do plano contratado, nas datas e meios de pagamento indicados pela LICENCIANTE (PIX, cartão de crédito ou boleto).</p>
+<p>3.2. O acesso ao Software somente será liberado após a confirmação do pagamento e a assinatura deste Contrato.</p>
+<div class="destaque"><p>3.3. O atraso no pagamento <b>não gera juros ou multa moratória</b>. Contudo, o não pagamento por período igual ou superior a 5 (cinco) dias contados do vencimento autoriza a LICENCIANTE a suspender total ou parcialmente o acesso ao Software e ao portal do colaborador, até a integral regularização, sem que tal suspensão configure interrupção indevida ou enseje indenização.</p></div>
+
+<h3>CLÁUSULA 4ª — DO REAJUSTE E DA ALTERAÇÃO DO VALOR</h3>
+<p>4.1. Os valores serão reajustados anualmente pela variação acumulada do índice IPCA/IBGE, ou por outro índice oficial que venha a substituí-lo.</p>
+<p>4.2. Independentemente do reajuste anual, a LICENCIANTE poderá alterar o valor do plano mediante comunicação prévia e expressa à CONTRATANTE (por escrito, e-mail, WhatsApp ou pelo próprio Software), com antecedência mínima de 30 (trinta) dias da vigência do novo valor.</p>
+<p>4.3. Não concordando com o novo valor, a CONTRATANTE poderá rescindir o Contrato antes da vigência do reajuste, sem incidência da taxa de cancelamento, desde que formalize a rescisão no prazo de 30 (trinta) dias da comunicação. O uso continuado após a vigência implica aceitação tácita e integral do novo valor.</p>
+
+<h3>CLÁUSULA 5ª — DAS OBRIGAÇÕES DA LICENCIANTE</h3>
+<p>Constituem obrigações da LICENCIANTE: (a) disponibilizar o acesso ao Software em até 7 (sete) dias úteis da confirmação do pagamento e da assinatura; (b) empregar esforços razoáveis para manter o Software em funcionamento, ressalvadas manutenções, caso fortuito e força maior; (c) prestar suporte técnico pelos canais informados; (d) zelar pela segurança e confidencialidade dos dados, na forma da Cláusula 8ª.</p>
+
+<h3>CLÁUSULA 6ª — DAS OBRIGAÇÕES DA CONTRATANTE</h3>
+<p>Constituem obrigações da CONTRATANTE: (a) efetuar pontualmente o pagamento das mensalidades; (b) utilizar o Software para fins lícitos e conforme sua destinação; (c) guardar com sigilo suas credenciais de acesso, respondendo integralmente por todo uso realizado a partir de sua conta; (d) não copiar, reproduzir, ceder, sublicenciar, alugar, distribuir, comercializar, realizar engenharia reversa, descompilar ou modificar o Software; (e) responsabilizar-se pela veracidade, exatidão e licitude de todos os dados que inserir, inclusive de seus empregados e colaboradores.</p>
+<p>6.2. A CONTRATANTE reconhece que o Software é ferramenta de apoio à gestão, sendo de sua exclusiva responsabilidade a conferência e validação das informações, cálculos e documentos gerados, especialmente para fins fiscais, trabalhistas e previdenciários.</p>
+
+<h3>CLÁUSULA 7ª — DA RESCISÃO E DA TAXA DE CANCELAMENTO</h3>
+<p>7.1. O Contrato poderá ser rescindido por qualquer das Partes, imotivadamente, mediante comunicação prévia e por escrito com antecedência mínima de 30 (trinta) dias.</p>
+<div class="destaque"><p>7.2. Na hipótese de rescisão por iniciativa da CONTRATANTE, ou por sua culpa, será devida à LICENCIANTE, a título de <b>taxa de cancelamento</b>, a quantia única de <b>R$ 149,00 (cento e quarenta e nove reais)</b>, a ser paga no ato da rescisão, sem prejuízo de mensalidades vencidas e não quitadas. Não incidem juros ou multa sobre esse valor.</p></div>
+<p>7.3. A taxa de cancelamento não será devida na hipótese de recusa a reajuste, nos termos da Cláusula 4.3.</p>
+<p>7.4. O Contrato poderá ser rescindido de pleno direito, com bloqueio imediato do acesso, em caso de: (i) inadimplemento não sanado; (ii) uso do Software em desacordo com este Contrato ou com a lei; ou (iii) violação das obrigações de propriedade intelectual ou confidencialidade.</p>
+<p>7.5. Rescindido o Contrato, cessa imediatamente o direito de uso. A LICENCIANTE manterá os dados disponíveis para exportação por até 15 (quinze) dias, findos os quais poderá eliminá-los, ressalvadas hipóteses de guarda obrigatória por lei.</p>
+
+<h3>CLÁUSULA 8ª — DA PROTEÇÃO DE DADOS (LGPD)</h3>
+<p>8.1. As Partes cumprirão a Lei nº 13.709/2018 (LGPD). 8.2. A CONTRATANTE atua como CONTROLADORA dos dados que insere, cabendo-lhe a base legal e a finalidade do tratamento; a LICENCIANTE atua como OPERADORA, tratando os dados conforme as instruções da CONTRATANTE. 8.3. A LICENCIANTE adotará medidas técnicas e administrativas de segurança compatíveis com o estado da técnica. 8.4. A CONTRATANTE é a única responsável por obter o consentimento dos titulares e assegurar base legal para os dados que inserir.</p>
+
+<h3>CLÁUSULA 9ª — DA PROPRIEDADE INTELECTUAL</h3>
+<p>9.1. O Software, incluindo código-fonte e objeto, arquitetura, layout, telas, marcas, logotipos, textos, bases de dados e documentação, é de titularidade exclusiva da LICENCIANTE, protegido pela Lei nº 9.609/1998 e pela Lei nº 9.610/1998. 9.2. Este Contrato concede apenas o direito de uso, não transferindo qualquer direito de propriedade intelectual. A violação sujeita a CONTRATANTE às penalidades civis e criminais cabíveis, além de perdas e danos.</p>
+
+<h3>CLÁUSULA 10ª — DA LIMITAÇÃO DE RESPONSABILIDADE</h3>
+<p>10.1. O Software é fornecido "no estado em que se encontra" (as is). A LICENCIANTE não garante funcionamento ininterrupto ou livre de erros, comprometendo-se a corrigir falhas comunicadas. 10.2. A LICENCIANTE não se responsabiliza por: (i) decisões da CONTRATANTE com base nas informações do Software; (ii) erros de dados inseridos pela CONTRATANTE; (iii) indisponibilidades causadas por terceiros ou por caso fortuito e força maior; (iv) danos indiretos ou lucros cessantes. 10.3. Reconhecida responsabilidade da LICENCIANTE, esta limita-se ao valor das 3 (três) últimas mensalidades pagas.</p>
+
+<h3>CLÁUSULA 11ª — DAS DISPOSIÇÕES GERAIS</h3>
+<p>11.1. A tolerância quanto ao descumprimento de qualquer obrigação não implica novação ou renúncia. 11.2. A nulidade de qualquer cláusula não prejudica as demais. 11.3. O Contrato obriga as Partes e seus sucessores, não podendo ser cedido pela CONTRATANTE sem anuência da LICENCIANTE. 11.4. As comunicações serão válidas quando feitas por escrito aos endereços físicos ou eletrônicos (e-mail e WhatsApp) informados. 11.5. Este Contrato representa o entendimento integral entre as Partes.</p>
+
+<h3>CLÁUSULA 12ª — DO FORO</h3>
+<p>12.1. As Partes elegem o foro da Comarca da sede da LICENCIANTE, com renúncia a qualquer outro, para dirimir controvérsias oriundas deste Contrato.</p>
 `;
 document.getElementById('contrato-texto').innerHTML = CLAUSULAS;
 
@@ -344,10 +377,24 @@ async function finalizar(){
   // botão de pagamento (próximo passo após assinar)
   const btnPagar=document.getElementById('btn-pagar');
   if(btnPagar) btnPagar.href=LINK_PAGAMENTO;
+  // botão do WhatsApp (obrigatório para liberar login)
+  const btnWhats=document.getElementById('btn-whats');
+  if(btnWhats) btnWhats.href=window._msgWpp;
 
-  // avisa o dono no WhatsApp
-  const msgWpp=`Novo contrato assinado!%0A%0AEmpresa: ${dados.empresa}%0ANome: ${dados.nome}%0AEmail: ${dados.email}%0APlano: ${dados.plano}%0ACódigo: ${codigo}%0AData: ${dataHora}`;
-  window.open(`https://wa.me/${WHATSAPP_DONO}?text=${msgWpp}`,'_blank');
+  // avisa o dono no WhatsApp — o contrato foi assinado
+  const msgWpp=`*NOVO CONTRATO ASSINADO - ATLAS RH*%0A%0A`+
+    `Empresa: ${dados.empresa}%0A`+
+    `CNPJ/CPF: ${dados.doc||'-'}%0A`+
+    `Responsavel: ${dados.nome}%0A`+
+    `E-mail (login): ${dados.email}%0A`+
+    `WhatsApp: ${dados.fone||'-'}%0A`+
+    `Plano: ${dados.plano}%0A`+
+    `Vencimento: dia ${dados.venc||'-'}%0A`+
+    `Codigo do contrato: ${codigo}%0A`+
+    `Data/hora: ${dataHora}%0A%0A`+
+    `Contrato assinado eletronicamente (aceite + assinatura + selfie). PDF salvo no sistema.%0A`+
+    `Apos confirmar o pagamento, criar o login e a senha para o e-mail acima.`;
+  window._msgWpp = `https://wa.me/${WHATSAPP_DONO}?text=${msgWpp}`;
 
   // mostra tela de sucesso
   document.getElementById('form-area').style.display='none';
@@ -363,60 +410,154 @@ async function gerarCodigo(txt){
 function gerarPDF(dados,dataHora,codigo,ip,assinatura,selfie){
   const { jsPDF }=window.jspdf;
   const pdf=new jsPDF('p','mm','a4');
-  const W=210, M=18; let y=20;
+  const W=210, H=297, M=20; let y=20;
 
-  pdf.setFillColor(10,26,48); pdf.rect(0,0,W,28,'F');
-  pdf.setTextColor(201,168,76); pdf.setFontSize(16); pdf.setFont('helvetica','bold');
-  pdf.text('CONTRATO DE LICENÇA DE USO DE SOFTWARE',W/2,13,{align:'center'});
-  pdf.setTextColor(255,255,255); pdf.setFontSize(9); pdf.setFont('helvetica','normal');
-  pdf.text('Atlas RH — Prestação de Serviços em Regime de Assinatura (SaaS)',W/2,20,{align:'center'});
+  function rodape(){
+    pdf.setFontSize(7.5); pdf.setFont('helvetica','normal'); pdf.setTextColor(150,150,150);
+    pdf.text('Contrato de Licença de Uso — Atlas RH   |   Documento assinado eletronicamente   |   Código: '+codigo, W/2, H-10, {align:'center'});
+  }
+  function novaPagina(){ rodape(); pdf.addPage(); y=22; }
+  function checaEspaco(precisa){ if(y+precisa > H-18){ novaPagina(); } }
 
-  y=38; pdf.setTextColor(11,30,53); pdf.setFontSize(11); pdf.setFont('helvetica','bold');
-  pdf.text('DADOS DO CONTRATANTE',M,y); y+=7;
-  pdf.setFontSize(9.5); pdf.setFont('helvetica','normal'); pdf.setTextColor(40,40,40);
-  const linhas=[
+  function tituloClausula(txt){
+    checaEspaco(16);
+    pdf.setFontSize(10); pdf.setFont('helvetica','bold'); pdf.setTextColor(11,30,53);
+    pdf.text(txt, M, y); y+=5.5;
+  }
+  function paragrafo(txt){
+    pdf.setFontSize(9); pdf.setFont('helvetica','normal'); pdf.setTextColor(45,45,45);
+    const linhas=pdf.splitTextToSize(txt, W-2*M);
+    linhas.forEach(l=>{ checaEspaco(6); pdf.text(l, M, y, {align:'justify', maxWidth:W-2*M}); y+=4.6; });
+    y+=2.5;
+  }
+  function destaque(txt){
+    const linhas=pdf.splitTextToSize(txt, W-2*M-8);
+    const alt=linhas.length*4.6+8;
+    checaEspaco(alt+2);
+    pdf.setFillColor(254,249,231); pdf.setDrawColor(201,168,76); pdf.setLineWidth(0.3);
+    pdf.rect(M, y-2, W-2*M, alt, 'FD');
+    pdf.setFontSize(9); pdf.setFont('helvetica','bold'); pdf.setTextColor(120,90,20);
+    let yy=y+4;
+    linhas.forEach(l=>{ pdf.text(l, M+4, yy); yy+=4.6; });
+    y+=alt+3;
+  }
+
+  // ===== CABEÇALHO =====
+  pdf.setFillColor(10,26,48); pdf.rect(0,0,W,30,'F');
+  pdf.setTextColor(201,168,76); pdf.setFontSize(15); pdf.setFont('helvetica','bold');
+  pdf.text('CONTRATO DE LICENÇA DE USO DE SOFTWARE', W/2, 13, {align:'center'});
+  pdf.setTextColor(230,235,245); pdf.setFontSize(9); pdf.setFont('helvetica','normal');
+  pdf.text('E Prestação de Serviços em Regime de Assinatura (SaaS) — Instrumento Particular', W/2, 20, {align:'center'});
+  pdf.setFontSize(7.5); pdf.setTextColor(201,168,76);
+  pdf.text('ATLAS RH — Sistema de Gestão de Departamento Pessoal', W/2, 26, {align:'center'});
+  y=40;
+
+  // ===== PARTES =====
+  tituloClausula('DAS PARTES');
+  paragrafo('LICENCIANTE / CONTRATADA: ATLAS RH, doravante denominada "LICENCIANTE", prestadora da licença de uso do software objeto deste instrumento.');
+  paragrafo('LICENCIADA / CONTRATANTE: '+dados.empresa+', inscrita no CNPJ/CPF sob o nº '+(dados.doc||'não informado')+', com endereço em '+(dados.endereco||'não informado')+', neste ato representada por '+dados.nome+', doravante denominada "CONTRATANTE".');
+  paragrafo('As Partes têm entre si, justo e contratado, o presente Contrato de Licença de Uso de Software e Prestação de Serviços em Regime de Assinatura, que se regerá pelas cláusulas e condições seguintes, que reciprocamente aceitam e outorgam.');
+
+  // ===== DADOS DO CONTRATO =====
+  checaEspaco(40);
+  pdf.setDrawColor(201,168,76); pdf.setLineWidth(0.4); pdf.line(M,y,W-M,y); y+=6;
+  tituloClausula('DADOS DA CONTRATAÇÃO');
+  pdf.setFontSize(9); pdf.setFont('helvetica','normal'); pdf.setTextColor(45,45,45);
+  [
     'Empresa / Razão Social: '+dados.empresa,
     'CNPJ / CPF: '+(dados.doc||'-'),
     'Responsável: '+dados.nome,
-    'E-mail: '+dados.email+'    WhatsApp: '+(dados.fone||'-'),
+    'E-mail: '+dados.email+'     WhatsApp: '+(dados.fone||'-'),
     'Endereço: '+(dados.endereco||'-'),
-    'Plano: '+dados.plano+'    Vencimento: dia '+(dados.venc||'-'),
-  ];
-  linhas.forEach(l=>{ const s=pdf.splitTextToSize(l,W-2*M); pdf.text(s,M,y); y+=s.length*5+1; });
+    'Plano contratado: '+dados.plano,
+    'Dia de vencimento: '+(dados.venc||'-'),
+  ].forEach(l=>{ checaEspaco(6); const s=pdf.splitTextToSize(l,W-2*M); pdf.text(s,M,y); y+=s.length*4.6+0.5; });
+  y+=3; pdf.line(M,y,W-M,y); y+=7;
 
-  y+=4; pdf.setDrawColor(201,168,76); pdf.setLineWidth(0.4); pdf.line(M,y,W-M,y); y+=7;
+  // ===== CLÁUSULAS COMPLETAS =====
+  tituloClausula('CLÁUSULA 1ª — DO OBJETO');
+  paragrafo('1.1. O presente Contrato tem por objeto a concessão de licença de uso, temporária, onerosa, pessoal, intransferível e não exclusiva, do sistema informatizado de gestão de recursos humanos e departamento pessoal denominado "ATLAS RH" (Software), disponibilizado na modalidade Software como Serviço (SaaS), acessível remotamente pela internet.');
+  paragrafo('1.2. A licença ora concedida não implica transferência de propriedade do Software, de seu código-fonte ou de quaisquer direitos de propriedade intelectual, que permanecem sob titularidade exclusiva da LICENCIANTE.');
 
-  pdf.setFontSize(11); pdf.setFont('helvetica','bold'); pdf.setTextColor(11,30,53);
-  pdf.text('RESUMO DAS CLÁUSULAS',M,y); y+=6;
-  pdf.setFontSize(8); pdf.setFont('helvetica','normal'); pdf.setTextColor(60,60,60);
-  const resumo='1. OBJETO: licença de uso do sistema Atlas RH (SaaS). 2. VIGÊNCIA: prazo indeterminado, mensal renovável. 3. PREÇO: pagamento mensal; atraso gera multa 2%, juros 1%/mês; atraso >=5 dias suspende o acesso. 4. REAJUSTE: anual pelo IPCA; alteração de valor com aviso de 30 dias. 5-6. OBRIGAÇÕES: acesso em ate 7 dias uteis, suporte e seguranca; cliente paga em dia, nao copia/revende, responde pelos dados. 7. CANCELAMENTO: rescisao com aviso de 30 dias; taxa de cancelamento de R$ 149,00 em caso de cancelamento pelo contratante. 8. LGPD: cliente e controlador, Atlas RH e operadora. 9. PROPRIEDADE: software e de titularidade exclusiva do Atlas RH. 10. RESPONSABILIDADE: software fornecido no estado em que se encontra. 11-12. Foro da comarca da sede da licenciante.';
-  const rs=pdf.splitTextToSize(resumo,W-2*M); pdf.text(rs,M,y); y+=rs.length*3.6+4;
+  tituloClausula('CLÁUSULA 2ª — DA VIGÊNCIA E DA RENOVAÇÃO');
+  paragrafo('2.1. Este Contrato vigora por prazo indeterminado, com início na data da assinatura, produzindo efeitos a partir da liberação do acesso à CONTRATANTE.');
+  paragrafo('2.2. A assinatura é contratada em ciclos mensais, renovando-se automática e sucessivamente por iguais períodos, independentemente de aviso, salvo manifestação expressa de rescisão na forma da Cláusula 7ª.');
 
-  pdf.setFillColor(254,249,231); pdf.rect(M,y,W-2*M,10,'F');
-  pdf.setFontSize(8.5); pdf.setFont('helvetica','bold'); pdf.setTextColor(120,90,20);
-  pdf.text('Taxa de cancelamento: R$ 149,00 (cento e quarenta e nove reais).',M+3,y+6.5); y+=16;
+  tituloClausula('CLÁUSULA 3ª — DO PREÇO E DAS CONDIÇÕES DE PAGAMENTO');
+  paragrafo('3.1. Pela licença de uso e pelos serviços contratados, a CONTRATANTE pagará mensalmente o valor do plano contratado, nas datas e pelos meios de pagamento indicados pela LICENCIANTE (PIX, cartão de crédito ou boleto).');
+  paragrafo('3.2. O acesso ao Software somente será liberado após a confirmação do pagamento e a assinatura deste Contrato.');
+  destaque('3.3. O atraso no pagamento NÃO gera juros ou multa moratória. Contudo, o não pagamento por período igual ou superior a 5 (cinco) dias contados do vencimento autoriza a LICENCIANTE a suspender total ou parcialmente o acesso ao Software e ao portal do colaborador, até a integral regularização, sem que tal suspensão configure interrupção indevida ou enseje qualquer indenização.');
 
-  // assinatura + selfie lado a lado
+  tituloClausula('CLÁUSULA 4ª — DO REAJUSTE E DA ALTERAÇÃO DO VALOR');
+  paragrafo('4.1. Os valores serão reajustados anualmente pela variação acumulada do índice IPCA/IBGE, ou por outro índice oficial que venha a substituí-lo.');
+  paragrafo('4.2. Independentemente do reajuste anual, a LICENCIANTE poderá alterar o valor do plano mediante comunicação prévia e expressa à CONTRATANTE (por escrito, e-mail, WhatsApp ou pelo próprio Software), com antecedência mínima de 30 (trinta) dias da data em que a alteração passará a vigorar.');
+  paragrafo('4.3. Não concordando com o novo valor, a CONTRATANTE poderá rescindir o Contrato antes da vigência do reajuste, sem incidência da taxa de cancelamento, desde que formalize a rescisão no prazo de 30 (trinta) dias da comunicação. O uso continuado do Software após a vigência do novo valor implica aceitação tácita e integral do reajuste.');
+
+  tituloClausula('CLÁUSULA 5ª — DAS OBRIGAÇÕES DA LICENCIANTE');
+  paragrafo('Constituem obrigações da LICENCIANTE: (a) disponibilizar o acesso ao Software em até 7 (sete) dias úteis contados da confirmação do pagamento e da assinatura deste Contrato; (b) empregar esforços comercialmente razoáveis para manter o Software em funcionamento, ressalvadas manutenções programadas, caso fortuito e força maior; (c) prestar suporte técnico pelos canais e horários informados; (d) zelar pela segurança e confidencialidade dos dados hospedados, na forma da Cláusula 8ª.');
+
+  tituloClausula('CLÁUSULA 6ª — DAS OBRIGAÇÕES DA CONTRATANTE');
+  paragrafo('6.1. Constituem obrigações da CONTRATANTE: (a) efetuar pontualmente o pagamento das mensalidades; (b) utilizar o Software exclusivamente para fins lícitos e conforme sua destinação; (c) guardar com sigilo suas credenciais de acesso (login e senha), respondendo integralmente por todo uso realizado a partir de sua conta; (d) não copiar, reproduzir, ceder, sublicenciar, alugar, emprestar, distribuir, comercializar, realizar engenharia reversa, descompilar, decompor ou modificar o Software, no todo ou em parte; (e) responsabilizar-se pela veracidade, exatidão e licitude de todos os dados e informações inseridos, inclusive dados de seus empregados e colaboradores.');
+  paragrafo('6.2. A CONTRATANTE reconhece que o Software constitui ferramenta de apoio à gestão, sendo de sua exclusiva responsabilidade a conferência, validação e correta utilização das informações, cálculos e documentos gerados, especialmente para fins fiscais, trabalhistas e previdenciários.');
+
+  tituloClausula('CLÁUSULA 7ª — DA RESCISÃO E DA TAXA DE CANCELAMENTO');
+  paragrafo('7.1. O presente Contrato poderá ser rescindido por qualquer das Partes, imotivadamente, mediante comunicação prévia e por escrito à outra Parte, com antecedência mínima de 30 (trinta) dias.');
+  destaque('7.2. Na hipótese de rescisão por iniciativa da CONTRATANTE, ou por sua culpa, será devida à LICENCIANTE, a título de taxa de cancelamento, a quantia única de R$ 149,00 (cento e quarenta e nove reais), a ser paga no ato da rescisão, sem prejuízo do pagamento de eventuais mensalidades vencidas e não quitadas. Não incidem juros ou multa sobre este valor.');
+  paragrafo('7.3. A taxa de cancelamento prevista na cláusula 7.2 não será devida na hipótese específica de recusa a reajuste, nos termos da Cláusula 4.3.');
+  paragrafo('7.4. Independentemente de aviso prévio, o Contrato poderá ser rescindido de pleno direito, com bloqueio imediato do acesso, na hipótese de: (i) inadimplemento não sanado; (ii) uso do Software em desacordo com este Contrato ou com a lei; ou (iii) violação das obrigações de propriedade intelectual ou confidencialidade.');
+  paragrafo('7.5. Rescindido o Contrato, cessará imediatamente o direito de uso do Software. A LICENCIANTE manterá os dados da CONTRATANTE disponíveis para exportação por até 15 (quinze) dias contados da rescisão, findos os quais poderá eliminá-los definitivamente, ressalvadas as hipóteses de guarda obrigatória por lei.');
+
+  tituloClausula('CLÁUSULA 8ª — DA PROTEÇÃO DE DADOS PESSOAIS (LGPD)');
+  paragrafo('8.1. As Partes obrigam-se a cumprir a Lei nº 13.709/2018 (Lei Geral de Proteção de Dados Pessoais — LGPD) e demais normas aplicáveis.');
+  paragrafo('8.2. A CONTRATANTE atua como CONTROLADORA dos dados pessoais que insere no Software, cabendo-lhe a base legal, a finalidade e a licitude do tratamento. A LICENCIANTE atua como OPERADORA, realizando o tratamento em nome e conforme as instruções da CONTRATANTE, limitado ao necessário para a prestação dos serviços.');
+  paragrafo('8.3. A LICENCIANTE adotará medidas técnicas e administrativas de segurança aptas a proteger os dados pessoais, de acordo com o estado da técnica. 8.4. A CONTRATANTE é a única responsável por obter, quando necessário, o consentimento dos titulares e por assegurar base legal adequada para os dados que inserir.');
+
+  tituloClausula('CLÁUSULA 9ª — DA PROPRIEDADE INTELECTUAL');
+  paragrafo('9.1. O Software, incluindo, sem limitação, seu código-fonte e objeto, arquitetura, layout, telas, marcas, logotipos, textos, bases de dados e documentação, é de titularidade exclusiva da LICENCIANTE, protegido pela Lei nº 9.609/1998 (Lei do Software), pela Lei nº 9.610/1998 (Lei de Direitos Autorais) e demais normas aplicáveis.');
+  paragrafo('9.2. Este Contrato concede à CONTRATANTE tão somente o direito de uso do Software, não lhe transferindo qualquer direito de propriedade intelectual. Qualquer violação sujeitará a CONTRATANTE às penalidades civis e criminais cabíveis, além de perdas e danos.');
+
+  tituloClausula('CLÁUSULA 10ª — DA LIMITAÇÃO DE RESPONSABILIDADE');
+  paragrafo('10.1. O Software é fornecido "no estado em que se encontra" (as is). A LICENCIANTE não garante que funcionará de forma ininterrupta ou livre de erros, comprometendo-se a empregar esforços razoáveis para corrigir falhas que lhe forem comunicadas.');
+  paragrafo('10.2. A LICENCIANTE não se responsabiliza por: (i) decisões tomadas pela CONTRATANTE com base nas informações do Software; (ii) erros decorrentes de dados incorretamente inseridos pela CONTRATANTE; (iii) indisponibilidades causadas por terceiros (provedores de internet, hospedagem, energia) ou por caso fortuito e força maior; e (iv) danos indiretos, lucros cessantes ou perda de dados não imputáveis a dolo ou culpa grave da LICENCIANTE.');
+  paragrafo('10.3. Nas hipóteses em que for reconhecida responsabilidade da LICENCIANTE, esta ficará limitada, no total, ao valor equivalente às 3 (três) últimas mensalidades efetivamente pagas pela CONTRATANTE.');
+
+  tituloClausula('CLÁUSULA 11ª — DAS DISPOSIÇÕES GERAIS');
+  paragrafo('11.1. A tolerância de qualquer das Partes quanto ao descumprimento de obrigação da outra não implicará novação, renúncia ou alteração do pactuado. 11.2. A eventual nulidade de qualquer cláusula não prejudicará as demais. 11.3. O Contrato obriga as Partes e seus sucessores, não podendo ser cedido pela CONTRATANTE sem prévia anuência da LICENCIANTE. 11.4. As comunicações serão válidas quando realizadas por escrito e enviadas aos endereços físicos ou eletrônicos (e-mail e WhatsApp) informados. 11.5. Este Contrato representa o entendimento integral entre as Partes quanto ao seu objeto.');
+
+  tituloClausula('CLÁUSULA 12ª — DO FORO');
+  paragrafo('12.1. As Partes elegem o foro da Comarca da sede da LICENCIANTE, com renúncia expressa a qualquer outro, por mais privilegiado que seja, para dirimir quaisquer dúvidas ou controvérsias oriundas deste Contrato.');
+
+  // ===== ACEITE E ASSINATURA =====
+  checaEspaco(80);
+  y+=2; pdf.setDrawColor(201,168,76); pdf.setLineWidth(0.5); pdf.line(M,y,W-M,y); y+=7;
+  paragrafo('E, por estarem assim justas e contratadas, as Partes firmam o presente instrumento por meio de assinatura eletrônica, manifestando aceite integral e inequívoco a todos os seus termos, cláusulas e condições.');
+
+  checaEspaco(60);
   pdf.setFontSize(9.5); pdf.setFont('helvetica','bold'); pdf.setTextColor(11,30,53);
-  pdf.text('ASSINATURA DO CONTRATANTE',M,y);
-  pdf.text('SELFIE (identificação)',W/2+8,y); y+=3;
-  try{ pdf.addImage(assinatura,'PNG',M,y,75,30); }catch(_){}
-  try{ if(selfie) pdf.addImage(selfie,'JPEG',W/2+8,y,32,30); }catch(_){}
-  y+=32;
-  pdf.setDrawColor(180,180,180); pdf.line(M,y,M+75,y); y+=4;
-  pdf.setFontSize(8); pdf.setFont('helvetica','normal'); pdf.setTextColor(80,80,80);
-  pdf.text(dados.nome,M,y); y+=8;
+  pdf.text('ASSINATURA DO CONTRATANTE', M, y);
+  pdf.text('IDENTIFICAÇÃO (SELFIE)', W/2+12, y); y+=3;
+  try{ if(assinatura) pdf.addImage(assinatura,'PNG',M,y,72,28); }catch(_){}
+  try{ if(selfie) pdf.addImage(selfie,'JPEG',W/2+12,y,30,28); }catch(_){}
+  y+=30;
+  pdf.setDrawColor(120,120,120); pdf.setLineWidth(0.3); pdf.line(M,y,M+72,y); y+=4;
+  pdf.setFontSize(9); pdf.setFont('helvetica','bold'); pdf.setTextColor(40,40,40);
+  pdf.text(dados.nome, M, y); y+=4;
+  pdf.setFontSize(8); pdf.setFont('helvetica','normal'); pdf.setTextColor(90,90,90);
+  pdf.text('CONTRATANTE — '+dados.empresa, M, y); y+=8;
 
-  // bloco de autenticação
-  pdf.setDrawColor(201,168,76); pdf.setLineWidth(0.4); pdf.rect(M,y,W-2*M,26); y+=6;
-  pdf.setFontSize(8.5); pdf.setFont('helvetica','bold'); pdf.setTextColor(11,30,53);
-  pdf.text('REGISTRO DE ASSINATURA ELETRÔNICA',M+3,y); y+=5;
-  pdf.setFont('helvetica','normal'); pdf.setTextColor(60,60,60); pdf.setFontSize(8);
-  pdf.text('Data e hora: '+dataHora,M+3,y); y+=4;
-  pdf.text('Código de verificação: '+codigo,M+3,y); y+=4;
-  pdf.text('IP de origem: '+ip,M+3,y); y+=4;
-  pdf.text('Assinado eletronicamente por aceite, assinatura manuscrita digital e captura de imagem.',M+3,y);
+  // ===== REGISTRO DE ASSINATURA ELETRÔNICA =====
+  checaEspaco(34);
+  pdf.setDrawColor(201,168,76); pdf.setLineWidth(0.4);
+  pdf.setFillColor(250,250,252); pdf.rect(M,y,W-2*M,30,'FD'); y+=6;
+  pdf.setFontSize(9); pdf.setFont('helvetica','bold'); pdf.setTextColor(11,30,53);
+  pdf.text('REGISTRO DE ASSINATURA ELETRÔNICA', M+4, y); y+=5;
+  pdf.setFont('helvetica','normal'); pdf.setTextColor(55,55,55); pdf.setFontSize(8);
+  pdf.text('Data e hora da assinatura: '+dataHora, M+4, y); y+=4;
+  pdf.text('Código de verificação (hash SHA-256): '+codigo, M+4, y); y+=4;
+  pdf.text('Endereço IP de origem: '+ip, M+4, y); y+=4;
+  pdf.text('Método: aceite eletrônico + assinatura manuscrita digital (canvas) + captura de imagem (selfie).', M+4, y);
 
+  rodape();
   return pdf.output('blob');
 }
 
