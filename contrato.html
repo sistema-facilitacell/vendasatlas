@@ -139,9 +139,24 @@
       </div>
     </div>
 
+    <!-- ETAPA 5: CRIAR SENHA -->
+    <div class="step">
+      <div class="step-title"><span class="step-num">5</span> Crie sua senha de acesso</div>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Esta será a senha que você usará para entrar no sistema Atlas RH. Seu login será o e-mail informado acima.</p>
+      <div class="fld">
+        <label>Sua senha (mínimo 6 caracteres)</label>
+        <input id="c-senha" type="password" placeholder="Escolha uma senha" oninput="validar()">
+      </div>
+      <div class="fld">
+        <label>Confirme a senha</label>
+        <input id="c-senha2" type="password" placeholder="Digite a senha novamente" oninput="validar()">
+      </div>
+      <div id="senha-erro" style="font-size:13px;color:var(--danger);font-weight:600;display:none">As senhas não coincidem.</div>
+    </div>
+
     <!-- FINALIZAR -->
     <div class="step">
-      <button class="btn-finalizar" id="btn-finalizar" onclick="finalizar()" disabled>Assinar e finalizar contrato</button>
+      <button class="btn-finalizar" id="btn-finalizar" onclick="finalizar()" disabled>Assinar contrato e finalizar</button>
       <div class="aviso-legal">Ao finalizar, registramos data, hora e um código de verificação único. Uma via em PDF será gerada para você e enviada ao Atlas RH.</div>
     </div>
   </div>
@@ -322,7 +337,17 @@ function validar(){
   const empresa=document.getElementById('c-empresa').value.trim();
   const email=document.getElementById('c-email').value.trim();
   const aceito=document.getElementById('aceito').checked;
-  const ok = nome&&empresa&&email&&aceito&&temAssinatura&&temSelfie;
+  const senha=document.getElementById('c-senha').value;
+  const senha2=document.getElementById('c-senha2').value;
+  // valida senhas
+  const erroSenha=document.getElementById('senha-erro');
+  let senhaOk=false;
+  if(senha && senha2){
+    if(senha!==senha2){ erroSenha.style.display='block'; erroSenha.textContent='As senhas não coincidem.'; }
+    else if(senha.length<6){ erroSenha.style.display='block'; erroSenha.textContent='A senha precisa ter ao menos 6 caracteres.'; }
+    else { erroSenha.style.display='none'; senhaOk=true; }
+  } else { erroSenha.style.display='none'; }
+  const ok = nome&&empresa&&email&&aceito&&temAssinatura&&temSelfie&&senhaOk;
   document.getElementById('btn-finalizar').disabled=!ok;
 }
 ['c-nome','c-empresa','c-email'].forEach(id=>{
@@ -344,6 +369,7 @@ async function finalizar(){
     plano:document.getElementById('c-plano').value,
     venc:document.getElementById('c-venc').value.trim(),
   };
+  const senhaCliente=document.getElementById('c-senha').value;
   const agora=new Date();
   const dataHora=agora.toLocaleString('pt-BR');
   // código de verificação único (hash simples de dados+tempo)
@@ -357,13 +383,24 @@ async function finalizar(){
   const assinaturaImg=canvas.toDataURL('image/png');
   const pdfBlob=gerarPDF(dados,dataHora,codigo,ip,assinaturaImg,selfieData);
 
-  // salva no Firebase
+  // salva no Firebase: contrato + FILA DE ESPERA (aguardando cadastro)
   try{
     if(DB){
+      // 1) o contrato assinado
       await DB.collection('contratos').add({
         ...dados, dataHora, codigo, ip,
         assinatura:assinaturaImg, selfie:selfieData,
         criadoEm:agora.toISOString()
+      });
+      // 2) registro na fila de espera para o painel do dono
+      await DB.collection('aguardando').add({
+        ...dados,
+        senha: senhaCliente,          // senha escolhida pelo cliente
+        codigo,                        // vincula ao contrato
+        contratoAssinado: true,
+        pago: false,                   // você marca como pago ao confirmar
+        cadastrado: false,             // você marca ao criar o login
+        criadoEm: agora.toISOString()
       });
     }
   }catch(e){ console.warn('Erro ao salvar:',e.message); }
