@@ -24,7 +24,7 @@ a{text-decoration:none;color:inherit}
 h1,h2,h3,.display{font-family:var(--display)}
 .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-weight:600;font-size:15px;cursor:pointer;border:none;transition:all .2s;font-family:var(--body)}
-.btn-gold{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:var(--navy);box-shadow:0 4px 14px rgba(201,168,76,.35)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-dark,#a8862f));color:#0A1A30!important;font-weight:800;box-shadow:0 4px 14px rgba(201,168,76,.35)}
 .btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.45)}
 .btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.25)}
 .btn-outline:hover{border-color:var(--gold);color:var(--gold)}
@@ -37,6 +37,8 @@ header{position:sticky;top:0;z-index:60;background:rgba(10,26,48,.92);backdrop-f
 .logo span{color:var(--gold)}
 .nav-links{display:flex;gap:30px;align-items:center}
 .nav-links a{color:#c1cde0;font-size:14.5px;font-weight:500;transition:color .15s}
+.nav-links a.btn-gold{color:#0A1A30 !important;font-weight:800}
+.nav-links a.btn-gold:hover{color:#0A1A30 !important}
 .nav-links a:hover{color:#fff}
 .nav-links .btn{padding:11px 22px}
 @media(max-width:820px){.nav-links a:not(.btn){display:none}}
@@ -424,7 +426,7 @@ footer{background:var(--navy);color:#8fa1bb;padding:56px 0 32px}
       <div class="fld"><label>WhatsApp</label><input id="c-fone" type="tel" placeholder="(00) 00000-0000"></div>
       <div class="fld"><label>Quantos funcionários?</label><input id="c-qtd" type="number" placeholder="Ex: 8" min="1"></div>
       <div class="fld"><label>Plano escolhido</label><select id="c-plano"><option value="Profissional">Profissional — R$ 97/mês (lançamento)</option></select></div>
-      <button class="btn btn-gold" onclick="irParaPagamento()">Ir para o pagamento →</button>
+      <button class="btn btn-gold" onclick="irParaPagamento()">Contratar agora →</button>
       <p class="cad-note">🔒 Seus dados estão seguros. Pagamento processado pelo Mercado Pago.</p>
     </div>
   </div>
@@ -485,18 +487,13 @@ function irParaPagamento(){
   const qtd=document.getElementById('c-qtd').value.trim();
   const plano=document.getElementById('c-plano').value;
   if(!empresa||!nome||!email){ alert('Preencha o nome da empresa, seu nome e o e-mail.'); return; }
-  const link=LINKS_PAGAMENTO[plano]||'#';
-  const resumo=`Novo cadastro Atlas RH:%0A%0AEmpresa: ${empresa}%0ACNPJ: ${cnpj||'-'}%0ANome: ${nome}%0AE-mail: ${email}%0AWhatsApp: ${fone}%0AFuncionarios: ${qtd||'-'}%0APlano: ${plano}`;
-  window._avisoWhats = `https://wa.me/${SEU_WHATSAPP}?text=${resumo}`;
-  document.getElementById('m-titulo').textContent=`Plano ${plano} — R$ 97/mês`;
-  document.getElementById('m-texto').innerHTML=`<b>1)</b> Clique em <b>Pagar agora</b> e conclua o pagamento (PIX, cartão ou boleto).<br><b>2)</b> Depois, toque em <b>Enviar meus dados</b> para agilizarmos a liberação do seu acesso.<br><br>Você recebe o acesso em <b>${email}</b> e pelo WhatsApp em até 1 dia útil.`;
-  const btn=document.getElementById('m-link');
-  btn.href=link;
-  btn.onclick=null;
-  // Botão do WhatsApp separado — só abre se o cliente clicar nele
-  const wbtn=document.getElementById('m-whats');
-  if(wbtn) wbtn.href=window._avisoWhats;
-  document.getElementById('mbg').classList.add('show');
+  // Fluxo: ASSINAR CONTRATO primeiro → depois PAGAR.
+  // Leva os dados para a página de contrato, que já vem preenchida.
+  const params = new URLSearchParams({
+    empresa, cnpj, nome, email, fone, qtd, plano
+  });
+  // ao terminar de assinar, o contrato redireciona para este link de pagamento
+  window.location.href = 'contrato.html?' + params.toString();
 }
 function fecharModal(){ document.getElementById('mbg').classList.remove('show'); }
 document.getElementById('mbg').addEventListener('click',e=>{ if(e.target.id==='mbg') fecharModal(); });
